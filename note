@@ -1,0 +1,17 @@
+https://github.com/mcamara/laravel-localization
+The package offers the following:
+
+Detect language from browser
+Smart redirects (Save locale in session/cookie)
+Smart routing (Define your routes only once, no matter how many languages you use)
+Translatable Routes
+Supports caching & testing
+Option to hide default locale in url
+Many snippets and helpers (like language selector)
+
+change in config file for get languages
+change header layouts css file
+----------------------------------
+https://github.com/yoeunes/toastr
+for notifications
+----------------------------------
