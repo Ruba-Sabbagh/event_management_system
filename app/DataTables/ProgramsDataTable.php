@@ -2,7 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\isis_programs;
 use App\Models\Program;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -27,7 +26,7 @@ class ProgramsDataTable extends DataTable
         ->setRowAttr([
             'align' => 'center'
         ])
-        ->editColumn('created_at',function(isis_programs $pro){
+        ->editColumn('created_at',function(Program $pro){
             return $pro->created_at->diffForHumans();
         })
         ->addColumn('action', function($row){

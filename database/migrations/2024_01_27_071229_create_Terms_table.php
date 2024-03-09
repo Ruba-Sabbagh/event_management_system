@@ -9,7 +9,7 @@ class CreateTermsTable extends Migration {
 	public function up()
 	{
 		Schema::create('Terms', function(Blueprint $table) {
-			$table->integer('term_id', true)->primary();
+			$table->increments('term_id', true);
 			$table->timestamps();
 			$table->string('term_name', 50);
 			$table->bigInteger('year');

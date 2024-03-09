@@ -20,6 +20,13 @@ class CreateProgramsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Programs');
+		Schema::create('Programs', function(Blueprint $table) {
+			$table->integer('program_id', true);
+			$table->timestamps();
+			$table->string('program_name', 100);
+			$table->string('program_name_ar', 100);
+			$table->string('program_code', 20);
+			$table->text('desc')->nullable();
+		});
 	}
 }

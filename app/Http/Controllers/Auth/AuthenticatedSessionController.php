@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if($request->user()->group->group_name === 'MG'){
+            return redirect()->route('admin.dashboard');
+        }elseif($request->user()->group->group_name === 'IT'){
+            return redirect()->route('emp.dashboard');
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

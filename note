@@ -15,3 +15,25 @@ change header layouts css file
 https://github.com/yoeunes/toastr
 for notifications
 ----------------------------------
+[php artisan krlove:generate:model ClassName](https://github.com/krlove/eloquent-model-generator)
+for get model of existing db
+-----------------------------
+composer require doctrine/dbal
+
+https://dev.to/mahmudulhsn/update-existing-table-with-migration-without-losing-in-data-in-laravel-fb1
+for add alter table
+
+-------------------------------
+composer require doctrine/dbal
+
+
+DB_CONNECTION=mysql
+DB_HOST=10.1.19.76
+DB_PORT=3306
+DB_DATABASE=svu_isis
+DB_USERNAME=ralsabbagh
+DB_PASSWORD=Eng.rubasa@2016
+----------------------------------
+for verevecation by email
+تفعيل المكتبة باليوزر موديل
+تفعيل mailtrap .env
