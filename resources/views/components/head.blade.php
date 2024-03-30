@@ -64,6 +64,7 @@
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
     crossorigin="anonymous"
 ></script>
+
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {

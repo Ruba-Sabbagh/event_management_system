@@ -4,12 +4,12 @@
     >
         <div class="brand-logo">
             <a href="/">
-                <img src="/back/vendors/images/logo (1).png" alt="" />
+                <img src="" alt="" />
             </a>
         </div>
-        <div class="login-menu">
+        <div class="login-menu" style="width: 300px;">
             <a href="/">
-                <img src="/back/vendors/images/slogn.png" alt="" />
+                <img src="/back/vendors/images/logo.png" alt="" style="width: 300px;"/>
             </a>
         </div>
     </div>

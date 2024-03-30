@@ -15,8 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <x-phead></x-phead>
 </head>
 <body>
+    <x-auth_header></x-auth_header>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -39,13 +41,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('svu.login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('svu.register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -55,6 +57,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        <i class="dw dw-user1"></i> {{ __('Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                        <i class="dw dw-user1"></i> {{ __('dashboard') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -66,7 +74,8 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+
+                            @endguest
                     </ul>
                 </div>
             </div>

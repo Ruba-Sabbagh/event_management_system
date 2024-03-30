@@ -13,7 +13,12 @@
         <x-setings-sidebar></x-setings-sidebar>
 
         <x-main-sidebar></x-main-sidebar>
-
+        <div class="mt-2">
+            @include('layouts.partials.messages')
+        </div>
+        <div class="mt-2">
+            @include('layouts.partials.messagesf')
+        </div>
 		<div class="main-container">
 			<div class="pd-ltr-20 xs-pd-20-10">
 				<div class="min-height-200px">

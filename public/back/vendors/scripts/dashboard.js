@@ -12,7 +12,7 @@ var options = {
 		height: 100,
 		width: 70,
 		type: 'radialBar',
-	},	
+	},
 	plotOptions: {
 		radialBar: {
 			hollow: {
@@ -39,7 +39,7 @@ var options = {
 			shade: 'dark',
 			type: 'diagonal1',
 			shadeIntensity: 0.8,
-			gradientToColors: ['#1b00ff'],
+			gradientToColors: ['#66c'],
 			inverseColors: false,
 			opacityFrom: [1, 0.2],
 			opacityTo: 1,
@@ -82,7 +82,7 @@ var options2 = {
 		height: 100,
 		width: 70,
 		type: 'radialBar',
-	},	
+	},
 	plotOptions: {
 		radialBar: {
 			hollow: {
@@ -152,7 +152,7 @@ var options3 = {
 		height: 100,
 		width: 70,
 		type: 'radialBar',
-	},	
+	},
 	plotOptions: {
 		radialBar: {
 			hollow: {
@@ -222,7 +222,7 @@ var options4 = {
 		height: 100,
 		width: 70,
 		type: 'radialBar',
-	},	
+	},
 	plotOptions: {
 		radialBar: {
 			hollow: {
@@ -288,7 +288,7 @@ var options5 = {
 			show: false,
 		},
 	},
-	colors: ['#1b00ff', '#f56767'],
+	colors: ['#66c', '#f56767'],
 	grid: {
 		borderColor: '#c7d2dd',
 		strokeDashArray: 5,
@@ -460,7 +460,7 @@ $('document').ready(function(){
 			searchPlaceholder: "Search",
 			paginate: {
 				next: '<i class="ion-chevron-right"></i>',
-				previous: '<i class="ion-chevron-left"></i>'  
+				previous: '<i class="ion-chevron-left"></i>'
 			}
 		},
 	});

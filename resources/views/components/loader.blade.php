@@ -1,7 +1,7 @@
 <div class="pre-loader">
     <div class="pre-loader-box">
         <div class="loader-logo">
-            <img src="/back/vendors/images/logo (1).png" alt="" />
+            <img src="/back/vendors/images/favicon-32x32.png" alt="" />
         </div>
         <div class="loader-progress" id="progress_div">
             <div class="bar" id="bar1"></div>

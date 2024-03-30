@@ -172,6 +172,10 @@ return [
         Yajra\DataTables\HtmlServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
         Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
+        Reliese\Coders\CodersServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+
+
 
 
 

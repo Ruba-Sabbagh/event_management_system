@@ -4,7 +4,7 @@
 <div class="block-content content"><div class="footer-container">
 
 <div class="footer-bottom">
-<p>Copyright © 2017, Syrian Virtual University</p>
+<p>Copyright © 2024, Events Management System</p>
 </div>
 </div>
 </div>

@@ -1,92 +1,75 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
-
 /**
- * @property integer $id
+ * Class User
+ *
+ * @property int $id
  * @property string $name
- * @property string $first_name_eng
- * @property string $father_name_eng
- * @property string $last_name_eng
- * @property string $full_name_eng
- * @property string $first_name_ar
- * @property string $father_name_ar
- * @property string $last_name_ar
- * @property string $full_name_ar
- * @property string $password
- * @property string $gender
- * @property string $address
- * @property string $phone
- * @property string $mbl
  * @property string $email
- * @property boolean $active
- * @property string $last_login
- * @property integer $group_id
- * @property integer $last_pass_modified
- * @property boolean $user_trusted
- * @property integer $coordinator
- * @property boolean $super_admin
- * @property string $nfc
- * @property string $pass_crypt
- * @property string $archive_sys_role
- * @property boolean $auth_level
- * @property string $course_bank
- * @property string $create_date
- * @property string $archive_file
- * @property string $sid
- * @property string $photo
- * @property string $sid_photo
- * @property string $personal_email
+ * @property Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @property Collection|InvitationsChair[] $invitations_chairs
+ * @property Collection|Task[] $tasks
+ *
+ * @package App\Models
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $primaryKey = 'id';
+	protected $table = 'users';
+    protected $guard_name = 'web';
 
-    protected $fillable = ['name', 'first_name_eng', 'father_name_eng', 'last_name_eng', 'full_name_eng', 'first_name_ar', 'father_name_ar',
-     'last_name_ar', 'full_name_ar','password',
-     'gender', 'address', 'phone',
-     'mbl', 'email', 'active', 'last_login', 'group_id', 'last_pass_modified', 'user_trusted',
-     'coordinator', 'super_admin', 'nfc', 'pass_crypt',
-     'archive_sys_role', 'auth_level', 'course_bank', 'create_date', 'archive_file', 'sid',
-     'photo', 'sid_photo', 'personal_email'];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	protected $casts = [
+		'email_verified_at' => 'datetime'
+	];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+	protected $hidden = [
+		'password',
+		'remember_token'
+	];
 
-    public function group(): BelongsTo
-    {
-        return $this->belongsTo(Groups::class);
+	protected $fillable = [
+		'name',
+		'email',
+		'email_verified_at',
+		'password',
+		'remember_token',
+	];
+
+	public function invitations_chairs()
+	{
+		return $this->hasMany(InvitationsChair::class);
+	}
+
+	public function tasks()
+	{
+		return $this->hasMany(Task::class);
+	}
+
+    public function userRole(){
+		return $this->belongsToMany(Role::class, 'model_has_roles');
+    }
+    public function userPermission(){
+		return $this->belongsToMany(Role::class, 'model_has_permissions');
     }
 }

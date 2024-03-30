@@ -8,25 +8,17 @@
 		<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-md-6 col-lg-7">
-						<img src="/back/vendors/images/login-page-img.png" alt="" />
-					</div>
-					<div class="col-md-6 col-lg-5">
+
+					<div class="col-md-6 col-lg-5" style="display: contents">
 						<div class="login-box bg-white box-shadow border-radius-10">
 							<div class="login-title">
 								<h2 class="text-center text-primary">{{__('svu.login') }}</h2>
 							</div>
-							<form action="{{route('login')}}" method="POST">
+                            <div class="mt-2">
+                                @include('layouts.partials.messagesf')
+                            </div>
+							<form action="{{route('login.store')}}" method="POST">
 								@csrf
-								@if(Session::get('fail'))
-								<div class="alert alert-danger">
-									{{Session::get('fail')}}
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-
-								@endif
 
 								<div class="input-group custom">
 									<input
@@ -41,11 +33,9 @@
 											><i class="icon-copy dw dw-user1"></i
 										></span>
 									</div>
-									@error('email')
-										<div class="d-block text-danger" style="margin-top:-25px; margin-bottom:15px;">
-										{{$message}}
-										</div>
-									@enderror
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                    @endif
 								</div>
 								<div class="input-group custom">
 									<input
@@ -60,11 +50,9 @@
 											><i class="dw dw-padlock1"></i
 										></span>
 									</div>
-									@error('password')
-										<div class="d-block text-danger" style="margin-top:-25px; margin-bottom:15px;">
-										{{$message}}
-										</div>
-									@enderror
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                    @endif
 								</div>
 								<div class="row pb-30">
 									<div class="col-6">
@@ -79,20 +67,14 @@
 											>
 										</div>
 									</div>
-									<div class="col-6">
-                                        @if(Route::has('password.request'))
-										<div class="forgot-password">
-											<a href="{{route('password.request')}}">{{ __('svu.forgot_password')}}</a>
-										</div>
-                                        @endif
-									</div>
+
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="input-group mb-0">
 
 
-										<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
+										<input class="btn btn-primary btn-lg btn-block" type="submit" value="{{__('svu.login') }}">
 
 											<!--<a
 												class="btn btn-primary btn-lg btn-block"
@@ -100,20 +82,19 @@
 												>Sign In</a
 											>-->
 										</div>
-										<div
-											class="font-16 weight-600 pt-10 pb-10 text-center"
-											data-color="#707373"
-										>
-											OR
-										</div>
-										<div class="input-group mb-0">
-											<a
-												class="btn btn-outline-primary btn-lg btn-block"
-												href="{{route('register')}}"
-												>Register To Create Account</a
-											>
-										</div>
-									</div>
+										<div class="" >
+                                            @if(Route::has('password.request'))
+                                            <div class="forgot-password">
+                                                <a href="{{route('password.request')}}">{{ __('svu.forgot_password')}}</a>
+                                            </div>
+                                            @endif
+                                            <!--@if(Route::has('username.request'))
+                                            <div class="forgot-password" style="padding: 12px;">
+                                                <a href="{{route('username.request')}}">{{ __('svu.forgot_username')}}</a>
+                                            </div>-->
+                                            @endif
+                                        </div>
+
 								</div>
 							</form>
 						</div>

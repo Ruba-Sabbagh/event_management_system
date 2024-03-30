@@ -69,7 +69,7 @@
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a class="dropdown-toggle"href="#"role="button"data-toggle="dropdown">
-                    <span class="user-icon">
+                    <span class="user-icon" style="display: inline-flex;">
                         @if(App::getLocale()== 'en')
                         <img src="/back/vendors/images/en.png" alt="" />
                         @else
@@ -79,17 +79,17 @@
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <div class="notification-list mx-h-350 customscroll">
+
                     <ul>
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                         <li>
-                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <a style="text-decoration: auto; text-align:center;color:dimgray" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                             {{ $properties['native'] }}
                         </a>
                         </li>
                     @endforeach
                     </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -189,9 +189,9 @@
             <div class="dropdown">
                 <a class="dropdown-toggle"href="#"role="button"data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="/back/vendors/images/photo1.jpg" alt="" />
+                        <img src="/back/vendors/images/avatar.png" alt="" />
                     </span>
-                    <span class="user-name">{{ Auth::user()->name }}</span>
+                    <span class="user-name">{{ Auth::user()->name.' '.Auth::user()->getRoleNames() }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <x-dropdown-link :href="route('profile.edit')">
@@ -214,10 +214,9 @@
 
 
 
-        <div class="github-link">
-            <a href="https://svuonline.org" target="_blank"
-                ><img src="/back/vendors/images/mlogo.png" alt=""
-            /></a>
-        </div>
+        <!--<div class="github-link" >
+            <a href="/" target="_blank"
+                ><img src="/back/vendors/images/logo.png" alt="" style="width: 300px;"></a>
+        </div>-->
     </div>
 </div>

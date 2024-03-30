@@ -15,26 +15,34 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create1(): View
     {
-        return view('auth.login');
+
+        if(Auth::check()){
+            if(Auth::user()->name === 'Admin'){
+                return view('pages.admin.dashboard');
+            }
+            return view('/');
+        }else
+             return view('auth.login');
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store1(LoginRequest $request): RedirectResponse
     {
+        dd('dadwd');
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        if($request->user()->group->group_name === 'MG'){
+        if(Auth::user()->name === 'Admin'){
             return redirect()->route('admin.dashboard');
-        }elseif($request->user()->group->group_name === 'IT'){
-            return redirect()->route('emp.dashboard');
         }
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->route('/');
+        //return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**

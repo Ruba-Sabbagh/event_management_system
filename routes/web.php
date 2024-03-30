@@ -1,13 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminPanel\AdminController;
-use App\Http\Controllers\EmployeePanel\EmployeeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Svu\ProgramController;
-use App\Http\Controllers\UserPanel\UserController;
+
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+
+
+
+
 
 
 
@@ -27,27 +31,30 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/dashboard', [UserController::class,'dashboard'])->name('dashboard');
-
-require __DIR__.'/auth.php';
-
-Auth::routes();
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ] // يحتف باللغة عند تسكير الموقع
     ], function(){
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+    });
+//Route::get('/dashboard', [UserController::class,'dashboard'])->name('dashboard');
+
+require __DIR__.'/auth.php';
 
 
+/*Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ] // يحتف باللغة عند تسكير الموقع
+    ], function(){
+
+        //Auth::routes();
         Route::middleware(['auth','role:MG'])->group(function () {
 
-           /* Route::get('/dashboard', function () {
-                return view('pages/admin/dashboard');
-            })->middleware(['auth', 'verified'])->name('dashboard');*/
 
             Route::get('/admin/dashboard', [AdminController::class,'index'])->name('admin.dashboard');
 
@@ -77,7 +84,7 @@ Route::group(
 
         });
 });
-
+*/
 
 /*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 */
