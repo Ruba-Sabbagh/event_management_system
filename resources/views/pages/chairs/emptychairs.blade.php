@@ -120,7 +120,6 @@
                 <th scope="col"  width="5%">#</th>
                 <th scope="col" width="15%">{{__('svu.code')}}</th>
                 <th scope="col" width="15%">{{__('svu.class')}}</th>
-                <th scope="col" width="15%">{{__('svu.invitetion')}}</th>
                 <th scope="col" width="15%">{{__('svu.chairstatus')}}</th>
                 <th scope="col" width="15%">{{__('svu.event_place')}}</th>
                 <th scope="col" colspan="3" width="1%"></th>
@@ -129,33 +128,16 @@
             <tbody>
 
                 @foreach($chairs as $chair)
+                    @if(empty($chair->invitations))
                     <tr>
                         <td>{{ $chair->id }}</td>
                         <td>{{ $chair->code }}</td>
-                        <td><p style="color:{{ $chair->chairclasses->color }}">{{ $chair->chairclasses->name  }}</hp></td>
+                        <td><p style="color:{{ $chair->color }}">{{ $chair->name  }}</hp></td>
+
                         <td>
-                            @if(!empty($chair->invitations))
-                                @foreach ($chair->invitations as $cb)
-                                    @if($cb->pivot->status==1)
-                                        {{ $cb->name }}
-                                    @endif
-                                @endforeach
-
-                            @endif
+                            {{ __('svu.empty') }}
                         </td>
-                        <td>
-                           @if(!empty($chair->invitations))
-                                @foreach ($chair->invitations as $cb)
-                                    @if($cb->pivot->status==1)
-                                        {{ __('svu.booking') }}
-                                        @break;
-                                    @endif
-
-                                @endforeach
-
-                            @endif
-                        </td>
-                        <td>{{ $chair->event_places->name }}</td>
+                        <td>{{ $chair->epname }}</td>
 
 
                         <td>
@@ -170,10 +152,10 @@
 
 
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
-        {{ $chairs->links() }}
     </div>
 </div>
     @include('pages.chairs.modal.create')

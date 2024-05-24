@@ -6,17 +6,22 @@ use App\Http\Controllers\event\ChairController;
 use App\Http\Controllers\event\ClassesController;
 use App\Http\Controllers\event\Event_placeController;
 use App\Http\Controllers\event\EventController;
+use App\Http\Controllers\event\Invitations_chairController;
 use App\Http\Controllers\event\InvitationsController;
 use App\Http\Controllers\event\Nicknames2Controller;
 use App\Http\Controllers\event\NicknamesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QRcodeGenerateController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\Svu\ProgramController;
 use App\Http\Controllers\UserController;
+use App\Mail\MailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+
 
 
 
@@ -86,6 +91,8 @@ Route::group(
             });
             Route::group(['prefix' => 'chairs'], function() {
                 Route::get('/', [ChairController::class, 'index'])->name('chairs.index');
+                Route::get('/emptychairs', [ChairController::class, 'emptychairs'])->name('chairs.emptychairs');
+                Route::get('/chairsreport', [ChairController::class, 'chairsreport'])->name('chairs.chairsreport');
                 Route::get('/create',  [ChairController::class, 'create'])->name('chairs.create');
                 Route::post('/create',  [ChairController::class, 'store'])->name('chairs.store');
                 Route::get('/{chair}/show',  [ChairController::class, 'show'])->name('chairs.show');
@@ -130,8 +137,21 @@ Route::group(
                 Route::get('/{invitation}/edit',  [InvitationsController::class, 'edit'])->name('invitations.edit');
                 Route::patch('/{invitation}/update',  [InvitationsController::class, 'update'])->name('invitations.update');
                 Route::delete('/{invitation}/delete',  [InvitationsController::class, 'destroy'])->name('invitations.destroy');
+                Route::get('/showqrcode/{invitation}',  [InvitationsController::class, 'showqrcode'])->name('invitations.showqrcode');
+                Route::get('/confirmedinv/{invitation}',  [InvitationsController::class, 'confirmedinv'])->name('invitations.confirmedinv');
+
+            });
+            Route::group(['prefix' => 'invitationchairs'], function() {
+                Route::get('/', [Invitations_chairController::class, 'index'])->name('invitationchairs.index');
+                Route::get('/create',  [Invitations_chairController::class, 'create'])->name('invitationchairs.create');
+                Route::post('/{invitation}/booking',  [Invitations_chairController::class, 'booking'])->name('invitationchairs.booking');
+                Route::get('/{invitationchairs}/show',  [Invitations_chairController::class, 'show'])->name('invitationchairs.show');
+                Route::get('/{invitationchairs}/edit',  [Invitations_chairController::class, 'edit'])->name('invitationchairs.edit');
+                Route::patch('/{invitationchairs}/update',  [Invitations_chairController::class, 'update'])->name('invitationchairs.update');
+                Route::delete('/{invitationchairs}/delete',  [Invitations_chairController::class, 'destroy'])->name('invitationchairs.destroy');
             });
 
+            //Route::get('/qrcode', [QRcodeGenerateController::class,'qrcode'])->name('qrcode');
 
         });
 

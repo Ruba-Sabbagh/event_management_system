@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OutInvitationsRequest extends FormRequest
+class InInvitationsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,9 @@ class OutInvitationsRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'event'=>['required'],
             'nickname'=>['required'],
-            'name'=>'required|string|unique:invitations,name,'.$this->invitation->id,
+            'name'=>'required|string|unique:invitations,name',
             'email'=>['required','string'],
             'mobile'=>['required','string'],
             'orgnisation'=>['required','string'],
@@ -31,3 +32,4 @@ class OutInvitationsRequest extends FormRequest
         ];
     }
 }
+

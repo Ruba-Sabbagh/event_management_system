@@ -41,3 +41,12 @@ for verevecation by email
 
 for role and permission
 spatia
+
+---------------
+git
+- git init
+- git add .
+- git commit -m "first commit"
+- git status
+- git remote add origin https://github.com/Ruba-Sabbagh/Laravel_Ecommerce.git
+- git push -u origin master بحاجة كاسر بروكسسي

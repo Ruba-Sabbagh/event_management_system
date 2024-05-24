@@ -2,8 +2,11 @@
 
 namespace App\DataTables;
 
+use App\Models\Classes;
 use App\Models\Event;
 use App\Models\Invitation;
+use App\Models\Nickname;
+use App\Models\Nicknames2;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\EloquentDataTable;
@@ -43,8 +46,10 @@ class InvitationsDataTable extends DataTable
             })->editColumn('event_id',function(Invitation $invitation){
                 return $invitation->event->title;
             })->addColumn('action',  function(Invitation $invitation){
-
-                return view('pages.invitations.datatable.action',['invitation'=> $invitation]);
+                $nicknames=Nickname::all();
+                $nicknames2=Nicknames2::all();
+                $classes=Classes::all();
+                return view('pages.invitations.datatable.action',['invitation'=> $invitation,'nicknames'=>$nicknames,'nicknames2'=>$nicknames2,'classes'=>$classes]);
             })
             ->escapeColumns([])
             ->filter(function ($query) use ($request) {
@@ -67,43 +72,7 @@ class InvitationsDataTable extends DataTable
                     $query->where('event_id', '=', $request->get('event'));
                 }
 
-            })->searchPane(
-                /*
-                 * This is the column for which this SearchPane definition is for
-                 */
-                'id',
-
-                /*
-                 * Here we define the options for our SearchPane. This should be either a collection or an array with the
-                 * form:*/
-                  [
-                     [
-                           'value' => 1,
-                           'label' => 'display value',
-                           'total' => 5, // optional
-                           'count' => 3 // optional
-                      ],
-                      [
-                           'value' => 2,
-                           'label' => 'display value 2',
-                           'total' => 6, // optional
-                           'count' => 5 // optional
-                      ],
-                    ],
-
-                fn() => Invitation::query()->select('id as value', 'name as label')->get(),
-
-                /*
-                 * This is the filter that gets executed when the user selects one or more values on the SearchPane. The
-                 * values are always given in an array even if just one is selected
-                 */
-                function (\Illuminate\Database\Eloquent\Builder $query, array $values) {
-                    return $query
-                        ->whereIn(
-                            'id',
-                            $values);
-                }
-            );
+            });
     }
 
     /**
@@ -111,7 +80,8 @@ class InvitationsDataTable extends DataTable
      */
     public function query(Invitation $model): QueryBuilder
     {
-        return $model->newQuery();
+
+        return $model->newQuery()->where('type','=',1);
     }
 
     /**

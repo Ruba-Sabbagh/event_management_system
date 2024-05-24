@@ -56,8 +56,8 @@
                     <ul class="submenu">
                         <li><a href="{{ route('chairs.index') }}">{{ __('svu.all_chairs') }}</a></li>
                         <li><a href="{{ route('chairclasses.index') }}">{{ __('svu.chairclasses') }}</a></li>
-                        <li><a href="{{ route('profile.edit') }}">{{ __('svu.empty_chairs') }}</a></li>
-                        <li><a href="{{ route('profile.edit') }}">{{ __('svu.chairs_report') }}</a></li>
+                        <li><a href="{{ route('chairs.emptychairs') }}">{{ __('svu.empty_chairs') }}</a></li>
+                        <li><a href="{{ route('chairs.chairsreport') }}">{{ __('svu.chairs_report') }}</a></li>
                     </ul>
                 </li>
 

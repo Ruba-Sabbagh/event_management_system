@@ -58,7 +58,7 @@ class Chair extends Model
 	public function invitations()
 	{
 		return $this->belongsToMany(Invitation::class, 'invitations_chair')
-					->withPivot('id', 'status', 'data', 'user_id', 'deleted_at')
+					->withPivot('id', 'status',  'user_id', 'deleted_at')
 					->withTimestamps();
 	}
 }

@@ -25,7 +25,41 @@ class ChairController extends Controller
       $firstcode=['A','B','C','D','E','F','G','H','I','J','K','L','N','M','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
       return view('pages.chairs.index', ['chairs' => $chairs,'event_places'=>$event_places,'chairclasses'=>$chairclasses,'firstcode'=> $firstcode]);
   }
-
+  public function emptychairs()
+  {
+      $chairs = DB::select('select notb.*, cc.name ,cc.color,ep.name epname from
+      (select c.* , d.status , d.event_id from
+                  (SELECT * from chair c ) c
+                  left join ( select ic.*, i.event_id from (SELECT * from invitations_chair ) ic
+                      inner join (SELECT * from invitations i ) i
+                      on i.id = ic.invitation_id ) d
+                  on c.id= d.chair_id
+                  where   d.status is null or d.status=0
+       ) notb
+       left join (select c.* , d.status , d.event_id from
+                  (SELECT * from chair c ) c
+                  left join ( select ic.*, i.event_id from (SELECT * from invitations_chair ) ic
+                      inner join (SELECT * from invitations i ) i
+                      on i.id = ic.invitation_id ) d
+                  on c.id= d.chair_id
+                  where   d.status=1
+       ) b on notb.id=b.id
+        inner JOIN event_place ep on (notb.event_place=ep.id)
+        inner JOIN chairclass cc on (notb.chairclass=cc.id)
+       where b.status is null and notb.deleted_at is null;');
+      $event_places=EventPlace::all();
+      $chairclasses=Chairclass::all();
+      $firstcode=['A','B','C','D','E','F','G','H','I','J','K','L','N','M','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+      return view('pages.chairs.emptychairs', ['chairs' => $chairs,'event_places'=>$event_places,'chairclasses'=>$chairclasses,'firstcode'=> $firstcode]);
+  }
+  public function chairsreport()
+  {
+      $chairs = Chair::paginate('10');
+      $event_places=EventPlace::all();
+      $chairclasses=Chairclass::all();
+      $firstcode=['A','B','C','D','E','F','G','H','I','J','K','L','N','M','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+      return view('pages.chairs.chairsreport', ['chairs' => $chairs,'event_places'=>$event_places,'chairclasses'=>$chairclasses,'firstcode'=> $firstcode]);
+  }
   /**
    * Show form for creating chairs
    *

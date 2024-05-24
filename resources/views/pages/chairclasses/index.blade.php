@@ -31,7 +31,7 @@
                 @foreach($chairclass as $cc)
                     <tr>
                         <td>{{ $cc->name }}</td>
-                        <td><div style="background-color:{{ $cc->color }}"></div></td>
+                        <td><div  style="width:15px;height:15px;background-color: {{ $cc->color }}" ></div></td>
                         <td><img src="/images/uploads/chair/{{ $cc->img }}" width="50px" height="50px"></td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#ModalShow{{ $cc->id }}" class="btn btn-info btn-sm">{{ __('svu.show') }}</a>

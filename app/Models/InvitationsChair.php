@@ -12,17 +12,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class InvitationsChair
- * 
+ *
  * @property int $id
  * @property int $invitation_id
  * @property int $chair_id
  * @property bool $status
- * @property Carbon $data
+ * @property Carbon $date
  * @property int|null $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * 
+ *
  * @property Chair $chair
  * @property Invitation $invitation
  * @property User|null $user
@@ -38,7 +38,7 @@ class InvitationsChair extends Model
 		'invitation_id' => 'int',
 		'chair_id' => 'int',
 		'status' => 'bool',
-		'data' => 'datetime',
+		'date' => 'datetime',
 		'user_id' => 'int'
 	];
 
@@ -46,7 +46,7 @@ class InvitationsChair extends Model
 		'invitation_id',
 		'chair_id',
 		'status',
-		'data',
+		'date',
 		'user_id'
 	];
 

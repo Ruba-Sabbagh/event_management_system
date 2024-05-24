@@ -22,6 +22,10 @@ return [
     'users'=> 'Users',
     'employees'=> 'The Employees',
     'chairs' => 'The Chairs',
+    'chair' => 'Chair Code',
+    'chairstatus'=>'ChairStatus',
+    'booking'=>'Booking',
+    'empty'=>'Empty',
     'all_chairs' => 'All Chairs',
     'empty_chairs' => 'Empty Chairs',
     'chairs_report' => 'Chairs Report',
@@ -79,5 +83,12 @@ return [
     'wait'=>'Wait',
     'confirmed'=>'Confirmed',
     'apology'=>'Apology',
+    'attendance'=>'Attendance',
+    'sendmail'=>'Send Mail',
+    'qrcode'=>'qrcode',
+    'clickhear'=>'Click Hear',
+    'additional_email'=>'Additional Email',
+    'sendwhatsapp'=>'Send Whatsapp',
+
 
 ];

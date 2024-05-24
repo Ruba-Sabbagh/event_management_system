@@ -23,6 +23,10 @@ return [
     'users'=> 'المستخدمين',
     'employees'=> 'الموظفين',
     'chairs' => 'الكراسي',
+    'chair' => 'رمز المقعد',
+    'chairstatus'=>'حالة الكرسي',
+    'booking'=>'محجوز',
+    'empty'=>'فارغ',
     'all_chairs' => 'جميع الكراسي',
     'empty_chairs' => 'الكراسي الفارغة',
     'chairs_report' => 'تقرير الكراسي',
@@ -80,5 +84,12 @@ return [
     'wait'=>'قيد الدراسة',
     'confirmed'=>'مؤكد',
     'apology'=>'اعتذار',
+    'attendance'=>'هل حضر الفعالية؟',
+    'sendmail'=>'إرسال بريد مع تغيير حالة الطلب',
+    'qrcode'=>'qrcode',
+    'clickhear'=>'انقر هنا',
+    'additional_email'=>'بريد إضافي',
+    'sendwhatsapp'=>'إرسال عبر الواتساب',
+
 
 ];

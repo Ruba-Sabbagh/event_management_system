@@ -72,7 +72,7 @@ class Invitation extends Model
 		'attendance'
 	];
 
-	public function class()
+	public function classes()
 	{
 		return $this->belongsTo(Classes::class, 'class');
 	}
@@ -87,15 +87,16 @@ class Invitation extends Model
 		return $this->belongsTo(Nicknames2::class, 'nickname2');
 	}
 
-	public function nickname()
+	public function nickname1()
 	{
 		return $this->belongsTo(Nickname::class, 'nickname');
 	}
 
 	public function chairs()
 	{
-		return $this->belongsToMany(Chair::class, 'invitations_chair')
-					->withPivot('id', 'status', 'data', 'user_id', 'deleted_at')
+		return $this->belongsToMany(Chair::class, 'invitations_chair')->join('users','users.id','=','user_id')
+					->withPivot('invitations_chair.id', 'status',  'user_id', 'deleted_at','users.name')
 					->withTimestamps();
+
 	}
 }

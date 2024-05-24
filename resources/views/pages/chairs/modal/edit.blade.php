@@ -13,17 +13,18 @@
                 </div>
                 <div class="modal-body">
                 <div class="mb-3">
-                    <label for="name" class="form-label">{{__('svu.name')}}</label>
-                    <input value="{{ $chair->name }}"
+                    <label for="code" class="form-label">{{__('svu.code')}}</label>
+                    <input value="{{ $chair->code }}"
                         type="text"
                         class="form-control"
-                        name="name"
-                        placeholder="Name" required>
+                        name="code"
+                        placeholder="code" required>
 
-                    @if ($errors->has('name'))
-                        <span class="text-danger text-left">{{ $errors->first('name') }}</span>
+                    @if ($errors->has('code'))
+                        <span class="text-danger text-left">{{ $errors->first('code') }}</span>
                     @endif
                 </div>
+
 
                 <button type="submit" class="btn btn-primary">Save chair</button>
                 <a href="{{ route('chairs.index') }}" class="btn btn-default">Back</a>

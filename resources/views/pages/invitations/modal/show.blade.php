@@ -9,19 +9,24 @@
 
                 <div class="modal-body">
                     <div class="bg-light p-4 rounded">
-                        <h1>{{ ucfirst($invitation->name) }} Permission</h1>
+                        <h1>{{ ucfirst($invitation->name) }} invitation</h1>
                         <div class="lead">
 
                         </div>
 
+                        <div class="container mt-4">
 
+                            <label scope="col" width="1%">{{__('svu.event')}}</label>: {{  $invitation->event->title }}</br>
+                            <label scope="col" width="1%">{{__('svu.date')}}</label>: {{$invitation->event->date." ". $invitation->event->time }} </br>
+                            <label scope="col" width="1%">{{__('svu.invitation_place')}}</label>: {{ $invitation->event->event_places->name }} </br>
 
-                    </div>
+                        </div>
                     <div class="mt-4">
                         <a href="{{ route('roles.index') }}" class="btn btn-default">Back</a>
                     </div>
 
                 </div>
+            </div>
             </div>
         </div>
     </div>

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\event;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invitation;
+use App\Models\InvitationsChair;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Invitations_chairController extends Controller
 {
@@ -33,8 +37,46 @@ class Invitations_chairController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function booking(Request $request,Invitation $invitation)
   {
+    $chair=$request->chair;
+    $chbooking=false;
+    /*$chairbooking=InvitationsChair::where('chair_id','=',$chair)->where('status','=',1)->get();
+    foreach($chairbooking as $cb){
+        if($cb->invitation->event_id==$invitation->event_id){
+            $chbooking=true;
+            break;
+        }
+    }*/
+
+    //if($chbooking==false){
+        DB::beginTransaction();
+
+        try {
+            $invchairbooking=InvitationsChair::where('invitation_id','=',$invitation->id)->where('status','=',1)->update([
+                'status'=>0,
+            ]);
+
+            InvitationsChair::create([
+                'invitation_id'=>$invitation->id,
+                'chair_id'=>$chair,
+                'status'=>1,
+                'user_id'=>Auth::user()->id
+            ]);
+
+
+            DB::commit();
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+        }
+            return redirect()->route('invitations.index')
+              ->withSuccess(__('Chair Booking successfully.'));
+    /*}else{
+        return redirect()->route('invitations.index')
+              ->withErrors(__('Chair is Booking in this Event .'));
+    }*/
 
   }
 

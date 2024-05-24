@@ -59,10 +59,10 @@
 										<div class="custom-control custom-checkbox">
 											<input
 												type="checkbox"
-												class="custom-control-input"
-                                                name="remember" value="1"
+
+                                                name="remember" @if(isset($_COOKIE['email'])) checked="" @endif
 											/>
-											<label class="custom-control-label" for="customCheck1"
+											<label class="" for="customCheck1"
 												>{{ __('svu.remember_me')}}</label
 											>
 										</div>
